@@ -10,7 +10,7 @@ demo_workflow:
     name: apache/airflow:2.0.2-python3.7
     entrypoint: [""]
   before_script:
-  - echo "Started ${CI_JOB_NAME} - $(date)"
+  - echo "beepStarted ${CI_JOB_NAME} - $(date)"
   script:
     - pip install dbt
     - cd bike_shop && dbt deps
