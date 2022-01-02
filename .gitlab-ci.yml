@@ -14,7 +14,7 @@ import_upstream_dbt_git_repo_changes:
     - cd bike_shop && dbt deps
     - git config --global user.name 'GitLab CI Worker'
     - git config --global user.email 'paulfry999@gmail.com'
-    - git add dbt_modules/
+    - git add dbt_packages/
     - git commit -m "Importing changes made in upstream dbt ('division data processing') git repo"
     - git push -u origin main
   after_script:
