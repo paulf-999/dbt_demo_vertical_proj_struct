@@ -1,5 +1,5 @@
 stages:
-- code
+  - code
 
 run_airflow_linter:
   rules:
