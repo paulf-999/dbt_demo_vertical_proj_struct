@@ -16,10 +16,10 @@ import_upstream_dbt_git_repo_changes:
   script:
     - echo "HERE1"
     - ls -l
-    - cd bike_shop && dbt deps
+    - cd dbt_demo_vertical_proj_struct/bike_shop && dbt deps
     - echo "HERE2"
     - ls -l
-    - git add dbt_packages/
+    - git add .
     - git commit -m "Importing changes made in upstream dbt ('division data processing') git repo"
     - git push -u origin main
   after_script:
