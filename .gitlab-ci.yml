@@ -4,7 +4,7 @@ stages:
 run_airflow_linter:
   rules:
   #only runs the following if you're on a main branch
-    - if: '$CI_COMMIT_BRANCH =~ /^main./'
+    - if: '$CI_COMMIT_BRANCH =~ /^main/'
   stage: code
   image:
     name: apache/airflow:2.0.2-python3.7
