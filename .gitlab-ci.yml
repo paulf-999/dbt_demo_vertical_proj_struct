@@ -3,7 +3,7 @@ stages:
 
 demo_workflow:
   rules:
-  #only runs the following if you're on a main branch
+  #only runs if you're on a main branch
     - if: '$CI_COMMIT_BRANCH =~ /^main/'
   stage: code
   image:
