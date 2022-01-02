@@ -12,7 +12,7 @@ demo_workflow:
     - pip install dbt-snowflake
   script:
     - cd bike_shop && dbt deps
-    - git add bike_shop/dbt_modules/
+    - git add dbt_modules/
     - git commit -m "Importing changes made in upstream dbt ('division data processing') git repo"
     - git push -u origin main
   after_script:
