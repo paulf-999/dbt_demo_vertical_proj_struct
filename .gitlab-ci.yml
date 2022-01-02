@@ -1,7 +1,7 @@
 stages:
   - code
 
-run_airflow_linter:
+demo_workflow:
   rules:
   #only runs the following if you're on a main branch
     - if: '$CI_COMMIT_BRANCH =~ /^main/'
@@ -12,7 +12,10 @@ run_airflow_linter:
   before_script:
   - echo "Started ${CI_JOB_NAME} - $(date)"
   script:
-    - echo "Hello world!"
+    - dbt deps
+    - git add bike_shop/dbt_modules/
+    - git commit -m "Changes made in upstream dbt (division processing) git repo"
+    - git push -u origin main
   after_script:
     - echo "Finished ${CI_JOB_NAME} - $(date)"
   allow_failure: true
