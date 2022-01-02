@@ -1,7 +1,7 @@
 stages:
   - code
 
-demo_workflow:
+import_upstream_dbt_git_repo_changes:
   rules:
   #only runs if you're on a main branch
     - if: '$CI_COMMIT_BRANCH =~ /^main/'
@@ -12,6 +12,8 @@ demo_workflow:
     - pip install dbt-snowflake
   script:
     - cd bike_shop && dbt deps
+    - git config --global user.name 'GitLab CI Worker'
+    - git config --global user.email 'paulfry999@gmail.com'
     - git add dbt_modules/
     - git commit -m "Importing changes made in upstream dbt ('division data processing') git repo"
     - git push -u origin main
