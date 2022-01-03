@@ -1,18 +1,24 @@
 stages:
-  - code
+  - git-robot
 
 import_upstream_dbt_git_repo_changes:
-  rules:
+  stage: git-robot
   #only runs if you're on a main branch
-    - if: '$CI_COMMIT_BRANCH =~ /^main/'
-  stage: code
+  only:
+    - main
+  allow_failure: false
   image: python:3.7
   before_script:
     - echo "Started ${CI_JOB_NAME} - $(date)"
     - pip install dbt-snowflake
-    - git clone https://gitlab.com/paulf-999/dbt_demo_vertical_proj_struct.git
+    - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
+    - eval $(ssh-agent -s)
+    - ssh-add <(echo "$GIT_SSH_PRIV_KEY")
     - git config --global user.name 'GitLab CI Worker'
-    - git config --global user.email 'paulfry999@gmail.com'
+    - git config --global user.email "${GITLAB_USER_EMAIL}"
+    - mkdir -p ~/.ssh
+    - cat gitlab-known-hosts >> ~/.ssh/known_hosts
+    - git clone https://gitlab.com/paulf-999/dbt_demo_vertical_proj_struct.git
   script:
     - echo "HERE1"
     - ls -l
@@ -24,4 +30,3 @@ import_upstream_dbt_git_repo_changes:
     - git push -u origin main
   after_script:
     - echo "Finished ${CI_JOB_NAME} - $(date)"
-  allow_failure: false
