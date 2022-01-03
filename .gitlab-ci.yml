@@ -6,6 +6,9 @@ import_upstream_dbt_git_repo_changes:
   #only runs if you're on the main branch
   only:
     - main
+  except:
+    variables:
+      - $CI_COMMIT_MESSAGE =~ /^git-robot*/
   allow_failure: false
   image: python:3.7
   before_script:
