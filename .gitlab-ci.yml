@@ -3,7 +3,7 @@ stages:
 
 import_upstream_dbt_git_repo_changes:
   stage: git-robot
-  #only runs if you're on a main branch
+  #only runs if you're on the main branch
   only:
     - main
   allow_failure: false
@@ -18,7 +18,7 @@ import_upstream_dbt_git_repo_changes:
     - git config --global user.email "${GITLAB_USER_EMAIL}"
     - mkdir -p ~/.ssh
     - cat gitlab-known-hosts >> ~/.ssh/known_hosts
-    - git clone https://gitlab.com/paulf-999/dbt_demo_vertical_proj_struct.git
+    - git clone git@gitlab.com:paulf-999/dbt_demo_vertical_proj_struct.git
   script:
     - echo "HERE1"
     - ls -l
