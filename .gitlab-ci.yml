@@ -3,10 +3,10 @@ stages:
 
 import_upstream_dbt_git_repo_changes:
   stage: git-robot
-  # only runs if you're on the main branch
+  #only runs if you're on the main branch
   only:
     - main
-  # doesn't run if the commit was performed by 'git-robot'
+  #doesn't run if the commit was performed by 'git-robot'
   except:
     variables:
       - $CI_COMMIT_MESSAGE =~ /^git-robot*/
